@@ -1,3 +1,6 @@
+from sys import argv
+script  = argv
+print(argv[0])
 print("How old are you?",end=' ')
 age = input()
 print("How tall are you?",end=' ')
