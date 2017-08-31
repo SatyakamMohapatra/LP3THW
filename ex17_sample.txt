@@ -1,6 +1,3 @@
-asdas
-asdasd
-asdsad
-da
-asdasd
-asdasdsa
+line1
+line2
+line3
