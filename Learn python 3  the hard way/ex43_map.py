@@ -9,14 +9,14 @@ class Map(object):
     "Death":ex43_scene.Death()
     }
     def __init__(self,start_scene):
-        print(start_scene)
-        return self.Scene.get("start_scene")
+        self.start_scene = start_scene
 
     def next_scene(self,next_scene):
-        pass
+        var = self.Scene.get(next_scene)
+        return var
 
     def opening_scene(self):
-        pass
+        return self.next_scene(self.start_scene)
 
 if __name__ == '__main__':
     main()
