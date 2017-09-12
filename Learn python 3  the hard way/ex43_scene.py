@@ -1,6 +1,10 @@
+from sys import exit
 class Scene(object):
     """docstring fo Scene."""
-    pass
+    def enter(self):
+        print("this scene is not yet configered")
+        print("subclass is and implement the eenter method")
+        exit(1)
 
 class Death(Scene):
     """docstring fo Death."""
