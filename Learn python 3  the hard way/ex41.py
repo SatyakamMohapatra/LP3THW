@@ -29,25 +29,49 @@ for word in urlopen(WORD_URL).readlines():
 
 def convert(snippet,phrase):
     class_names = [w.capitalize() for w in random.sample(WORDS,snippet.count("%%%"))]
-    print("class_names: ",class_names)
+    #print("class_names: ",class_names)
     other_names = random.sample(WORDS,snippet.count("***"))
-    print("other_names: ",other_names)
-i = 1
+    #print("other_names: ",other_names)
+
+    results = []
+    param_names = []
+
+    for i in range(0,snippet.count("@@@")):
+        param_count = random.randint(1,3)
+        param_names.append(', '.join(random.sample(WORDS,param_count)))
+
+    for sentence in snippet,phrase:
+        print(type(sentence))
+        result = sentence[:]
+        print(result)
+        for word in class_names:
+            result = result.replace("%%%",word,1)
+
+        for word in other_names:
+            result = result.replace("***",word,1)
+
+        for word in param_names:
+            result = result.replace("@@@",word,1)
+
+        results.append(result)
+
+    return results
+
 try:
-    while i==1:
+    while True:
         snippets = list(PHRASES.keys())
         random.shuffle(snippets)
-        i+=1
 
         for snippet in snippets:
             phrase = PHRASES[snippet]
 #            #question,answer = c
-            convert(snippet,phrase)
+            question,answer = convert(snippet,phrase)
 #            convert(snippet,phrase)
             if PHRASES_FIRST:
-#                question,answer = answer,question
-               print(snippet)
-               input("> ")
-               print(f"ANSWER: {phrase}\n\n")
+               question,answer = answer,question
+
+            print(question)
+            input("> ")
+            print(f"ANSWER: {answer}\n\n")
 except EOFError:
     Print('\nBYE#')
