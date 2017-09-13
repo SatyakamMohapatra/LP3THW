@@ -22,26 +22,29 @@ ADVANCE
 import BookServices
 class LibraryManagement:
 
-    def __init__(self):
-        self.main = main()
-
-    def add_book(self,book_name,book_author):
+    def start():
         books = BookServices.Book()
-        books.add_book(book_name,book_author)
+        books.get_all_book()
 
-    def remove_book(self,book_name,book_author):
+    def add_book(self,BOOK_ID,book_name,book_author):
         books = BookServices.Book()
-        get_all_book()
+        books.add_book(BOOK_ID,book_name,book_author)
+
+    def remove_book(self):
+        books = BookServices.Book()
+        self.get_all_book()
         book_id = input("Enter Book ID >")
-        addbobooksoks.remove_book(book_id)
+        books.remove_book(book_id)
 
     def get_all_book(self):
         books = BookServices.Book()
         books.get_all_book()
 
-    def main(self):
+    def get_book_map(self):
         books = BookServices.Book()
-        books.get_all_book()
+        print(books.get_book_map())
 
-if __name__ == '__main__':
-    main()
+start = LibraryManagement()
+#start.add_book(2,'ram','sam')
+#start.get_all_book()
+start.remove_book()
