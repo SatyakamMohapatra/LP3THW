@@ -20,6 +20,7 @@ ADVANCE
 7. Assortment Planning
 """
 import BookServices
+import IssueService
 class LibraryManagement:
 
     def start():
@@ -44,7 +45,12 @@ class LibraryManagement:
         books = BookServices.Book()
         print(books.get_book_map())
 
+    def issue_book(self):
+        books = IssueService.Issue()
+        books.get_issue_map()
+
 start = LibraryManagement()
-#start.add_book(2,'ram','sam')
+#start.add_book(5,'Machine','sam')
 #start.get_all_book()
-start.remove_book()
+#start.remove_book()
+start.issue_book()

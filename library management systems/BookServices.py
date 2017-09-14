@@ -20,10 +20,8 @@ class Book(object):
             book_array = book_master.readlines()
             if len(book_array) > 0:
                 for book in book_array:
-                    line_list = book.split(',')
-                    current_id,book_name,book_author,stock = line_list
+                    current_id,book_name,book_author,stock = book.split(',')
                     self.map[int(current_id)] = f"{book_name},{book_author},{stock}"
-        self.set_book_map(self.map)
         return self.map
 
     def set_book_map(self,map):
