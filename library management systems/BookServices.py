@@ -3,16 +3,20 @@ class Book(object):
     def __init__(self):
         pass
 
-    def add_book(self,BOOK_ID,book_name,book_author):
+    def add_book(self):
+        BOOK_ID  = input("Enter INSD ID >")
+        book_name = input("Enter book name >")
+        book_author = input("Enter author name >")
         map = self.get_book_map()
-        if int(BOOK_ID) in map:
-            value = map.get(BOOK_ID)
-            book_name,book_author,stock = value.split(',')
-            stock = int(stock)+1
-            map[BOOK_ID] = f"{book_name},{book_author},{stock}\n"
-        else:
-            map[BOOK_ID] = f"{book_name},{book_author},0\n"
-        self.set_book_map(map)
+        if len(BOOK_ID) != 0:
+            if int(BOOK_ID) in map:
+                value = map.get(BOOK_ID)
+                book_name,book_author,stock = value.split(',')
+                stock = int(stock)+1
+                map[BOOK_ID] = f"{book_name},{book_author},{stock}\n"
+            else:
+                map[BOOK_ID] = f"{book_name},{book_author},1\n"
+            self.set_book_map(map)
 
     def get_book_map(self):
         self.map = {}
@@ -39,11 +43,38 @@ class Book(object):
             print(f"     {key}     |     {book_name}     |     {book_author}     |     {stock}     ")
         print('_'*50)
 
-    def remove_book(self,book_id):
+    def change_stock(self,value,book_id):
         map = self.get_book_map()
         book_id = int(book_id)
-        if book_id in map:
-            del map[int(book_id)]
-            self.set_book_map(map)
+        if(book_id in map):
+            book_string = map[book_id]
         else:
-            print(f"Book with book_id: {book_id} not present")
+            print("Stock not avalable for the book")
+            return False
+        if int(value) > 0:
+            book_name,book_author,stock = book_string.split(',')
+            stock = int(stock)+1
+            map[book_id] = f"{book_name},{book_author},{stock}"
+            self.set_book_map(map)
+            return True
+        if int(value) <= 0:
+            book_name,book_author,stock = book_string.split(',')
+            stock = int(stock)
+            if(stock <= 0):
+                print("Stock not avalable for the book")
+                return False
+            stock = stock-1
+            map[book_id] = f"{book_name},{book_author},{stock}"
+            self.set_book_map(map)
+            return True
+        return False
+
+    def remove_book(self,book_id):
+        if len(book_id) != 0:
+            map = self.get_book_map()
+            book_id = int(book_id)
+            if book_id in map:
+                del map[int(book_id)]
+                self.set_book_map(map)
+            else:
+                print(f"Book with book_id: {book_id} not present")

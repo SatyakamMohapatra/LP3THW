@@ -21,15 +21,59 @@ ADVANCE
 """
 import BookServices
 import IssueService
+from sys import exit
+
 class LibraryManagement:
+    def __init__(self):
+        self.serv_dic = {
+            1:"add_book",
+            2:"remove_book",
+            3:"get_all_book",
+            4:"get_all_issues",
+            5:"issue_book",
+            0:"exit"
+        }
+        input("Welcome to LM Services > \"Enter to continue!\"")
 
-    def start():
-        books = BookServices.Book()
-        books.get_all_book()
+    def start(self):
+        print(f"""
+        Please seletct from the options:
+        {'_'*70}
+        1 for add a new book
+        2 for remove a book from stock
+        3 for get all books avalable in Libery
+        4 for details of all users
+        5 for issuing a book
+        0 for exit
+        """)
+        option = int(input("Provide you option > "))
+        self.run(option)
 
-    def add_book(self,BOOK_ID,book_name,book_author):
+    def run(self,option):
+        service_map = self.serv_dic
+        while option != 0:
+            if option == 1:
+                self.add_book()
+                self.start()
+            elif option == 2:
+                self.remove_book()
+                self.start()
+            elif option == 3:
+                self.get_all_book()
+                self.start()
+            elif option == 4:
+                self.get_all_issues()
+                self.start()
+            elif option == 5:
+                self.issue_book()
+                self.start()
+            else:
+                print("enter a valid option")
+                self.start()
+        exit(1)
+    def add_book(self):
         books = BookServices.Book()
-        books.add_book(BOOK_ID,book_name,book_author)
+        books.add_book()
 
     def remove_book(self):
         books = BookServices.Book()
@@ -41,16 +85,14 @@ class LibraryManagement:
         books = BookServices.Book()
         books.get_all_book()
 
-    def get_book_map(self):
-        books = BookServices.Book()
-        print(books.get_book_map())
-
     def issue_book(self):
         books = IssueService.Issue()
-        books.get_issue_map()
+        books.issue_book()
+
+    def get_all_issues(self):
+        books = IssueService.Issue()
+        books.get_all_issues()
+
 
 start = LibraryManagement()
-#start.add_book(5,'Machine','sam')
-#start.get_all_book()
-#start.remove_book()
-start.issue_book()
+start.start()
