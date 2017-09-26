@@ -8,6 +8,7 @@ class Lexicon(object):
 
     def get_path_tuple(self,direction):
         direction_array = direction.split()
+        direction_array = [i.lower() for i in direction_array]
         temp_array = []
         map_path = self.find_element_map(direction_array)
         for item in direction_array:
@@ -36,7 +37,7 @@ class Lexicon(object):
         paths_map = {}
         for k,v in element_map.items():
             for item in v:
-                if item in direction_array:
+                if item.lower() in direction_array:
                     paths_map.update({item:k})
         return paths_map
 
