@@ -1,0 +1,125 @@
+Ubuntu
+
+$ pip3 . 6 l i s t
+pip ( 9 . 0 . 1 )
+setuptools ( 2 8 . 8 . 0 )
+$ sudo pip3.6 install virtualenv
+$ whereis virtualenv
+/Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenv
+$ mkdir ~ /.venvs
+$ virtualenv ----system--site-- packages ~/.venvs/lpthw
+$ . ~/.venvs/lpthw/bin/activate
+( lpthw ) $
+( lpthw ) $ which python
+/ Users / zedshaw / . venvs / lpthw / bin / python
+( lpthw ) $ python
+Python 3 . 6 . 0 r c 2 ( v3 . 6 . 0 r c 2 :800 a67f7806d , Dec 16 2016 , 1 4 : 1 2 : 2 1 )
+[GCC 4 . 2 . 1 ( Apple I n c . b u i l d 5666) ( dot 3 ) ] on darwin
+Type ”help ” , ” copyright ” , ” c r e d i t s ” or ” l i c e n s e ” f o r more information .
+>>> q u i t ( )
+( lpthw ) $
+$ which python3 . 6
+/ Users / zedshaw / . venvs / lpthw / bin / python3 . 6
+( lpthw ) $
+$ pip install nose
+
+> .\.venvs\lpthw\Scripts\activate
+
+Windows 10 Setup
+
+> cd ~
+> python
+Python 3 . 6 . 0 ( v3 . 6 . 0 : 4 1 df79263a11 , Dec 23 2016 , 0 8 : 0 6 : 1 2 )
+[MSC v .1900 64 b i t (AMD64) ] on win32
+Type ”help ” , ” copyright ” , ” c r e d i t s ” or ” l i c e n s e ” f o r more information .
+>>> quit()
+> pip l i s t
+pip ( 9 . 0 . 1 )
+setuptools ( 2 8 . 8 . 0 )
+> pip install virtualenv
+Collecting virtualenv
+Using cached virtuallenv --15.1.0--py2 . py3--none--any . whl
+Installing collected packages : virtualenv
+Successfully installed virtualenv --15.1.0
+> mkdir .venvs
+> virtualenv --system--site--packages . venvs/lpthw
+> .\.venvs\lpthw\Scripts\activate
+( lpthw ) > pip install nose
+
+or
+Scripts\cmd
+Scripts\activate.bat
+Scripts\activate
+Creating the Skeleton Project Directory
+
+$ mkdir projects
+$ cd projects/
+$ mkdir skeleton
+$ cd skeleton
+$ mkdir bin NAME tests docs
+linux
+$ touch NAME/__init__.py
+$ touch tests/__init__.py
+windows
+$ new--item --type file NAME/__init__.py
+$ new--item --type file tests/__init__.py
+That creates an empty Python module directory we can put our code in. Then we need to create a
+setup.py file we can use to install our project later if we want:
+
+setup.py
+1 try:
+2 from setuptools import setup
+3 except ImportError:
+4 from distutils.core import setup
+5
+6 config = {
+7 'description': 'My Project',
+8 'author': 'My Name',
+9 'url': 'URL to get it at.',
+10 'download_url': 'Where to download it.',
+11 'author_email': 'My email.',
+12 'version': '0.1',
+13 'install_requires': ['nose'],
+14 'packages': ['NAME'],
+15 'scripts': [],
+16 'name': 'projectname'
+17 }
+18
+19 setup(**config)
+
+simple skeleton file for tests named tests/NAME_tests.py:
+NAME_tests.py
+1 from nose.tools import *
+2 import NAME
+3
+4 def setup():
+5 print("SETUP!")
+6
+7 def teardown():
+8 print("TEAR DOWN!")
+9
+10 def test_basic():
+11 print("I RAN!", end='')
+
+Final Directory Structure
+skeleton/
+     NAME/
+          __init__.py
+     bin/
+     docs/
+     setup.py
+     tests/
+          NAME_tests.py
+          __init__.py
+
+TO TEST
+$ nosetests
+
+Using the Skeleton
+1. Make a copy of your skeleton directory. Name it after your new project.
+2. Rename (move) the NAME directory to be the name of your project or whatever you want to call
+your root module.
+3. Edit your setup.py to have all the information for your project.
+4. Rename tests/NAME_tests.py to also have your module name.
+5. Double check it’s all working by using nosetests again.
+6. Start coding.

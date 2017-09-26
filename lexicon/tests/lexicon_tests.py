@@ -28,8 +28,8 @@ def test_nouns():
 def test_numbers():
 	lexicon=Lexicon()
 	assert_equal(lexicon.scan("1234"), [('number', 1234)])
-	result = lexicon.scan("3 91234")
-	assert_equal(result, [('number', 3),('number', 91234)])
+	result = lexicon.scan("3 91234 abx")
+	assert_equal(result, [('number', 3),('number', 91234),('error', 'abx')])
 
 def test_errors():
 	lexicon=Lexicon()

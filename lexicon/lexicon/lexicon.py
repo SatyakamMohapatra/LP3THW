@@ -13,16 +13,13 @@ class Lexicon(object):
                 temp_array.append(('error',item))
         return temp_array
 
-    def get_lexicon_map(self):
+    def find_element_map(self,direction_array):
         lexicon_map = {'direction':['north','south','east','west'],
                        'verb'     :['go','kill','eat'],
                        'stop'     :['the', 'in', 'of'],
                        'noun'     :['bear', 'princess']}
-        return lexicon_map;
-
-    def find_element_map(self,direction_array):
         paths_map = {}
-        for k,v in self.get_lexicon_map().items():
+        for k,v in lexicon_map.items():
             for item in v:
                 if item.lower() in direction_array:
                     paths_map.update({item:k})
