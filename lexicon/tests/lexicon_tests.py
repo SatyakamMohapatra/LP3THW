@@ -44,7 +44,7 @@ def test_errors():
 	lexicon=Lexicon()
 	assert_equal(lexicon.scan("ASDFADFASDF"),
 				[('error', 'ASDFADFASDF')])
-	result = lexicon.scan("bear IAS princess")
+	result = lexicon.scan("bear princess IAS")
 	assert_equal(result, [('noun', 'bear'),
 	 					('noun', 'princess'),
 						  ('error', 'IAS')])
